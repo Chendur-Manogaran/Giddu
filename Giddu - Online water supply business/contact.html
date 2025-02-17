@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giddu - Online water supply business</title>
+    <link rel="stylesheet" href="contact.css">
+    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!--Navigation Bar-->
+    <div class="navbar">
+        <a href="home.html"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a class="active" href="contact.html"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+        <a href="login.html"><i class="fa fa-fw fa-user"></i> Login</a>
+    </div>
+    <!--Contact form-->
+    <div class="container">
+        <form action="action_page.php">
+      
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your email..">
+      
+          <label for="subject">Subject</label>
+          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      
+          <input type="submit" value="Submit">
+      
+        </form>
+    </div>
+</body>
+</html>

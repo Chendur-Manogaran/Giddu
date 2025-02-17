@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giddu - Online water supply business</title>
+    <link rel="stylesheet" href="login.css">
+    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!--Navigation Bar-->
+    <div class="navbar">
+        <a href="home.html"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="contact.html"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+        <a class="active" href="login.html"><i class="fa fa-fw fa-user"></i> Login</a>
+    </div>
+    <!--Login Form-->
+    <form>
+        <div class="container">
+          <label for="email"><b>Email</b></label>
+          <input type="email" placeholder="Enter Email" name="email" required>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required id="password">
+          <input type="checkbox" onclick="togglePassword()"> Show Password
+      
+          <button type="submit">Login</button>
+          <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+          <span class="psw"><a href=forgot_password.html>Forgot password?</a></span>
+        </div>
+
+        <div class="social-container">
+            <button type="button" class="google-login"><i class="fa fa-google"></i> Login with Google</button>
+            <button type="button" class="apple-login"><i class="fa fa-apple"></i> Login with Apple</button>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="reset" class="resetbtn">Reset</button>
+        </div>
+    </form>
+</body>
+<script>
+    function togglePassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+</html>
