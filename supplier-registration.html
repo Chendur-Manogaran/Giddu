@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giddu - Supplier Registration</title>
+    <link rel="stylesheet" href="supplier-registration.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">💧</span>
+                    <span>Giddu</span>
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#how-it-works">How It Works</a></li>
+                    <li><a href="index.html#categories">Water Types</a></li>
+                    <li><a href="index.html#user-types">For Business</a></li>
+                    <li><a href="#" class="btn" download="App Downladed">Download App</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Registration Section -->
+    <section class="registration-section">
+        <div class="container">
+            <div class="registration-container">
+                <div class="registration-content animate-fadeIn">
+                    <h1>Join Giddu as a Supplier</h1>
+                    <p>Partner with us to expand your water supply business and reach more customers. Our platform connects quality suppliers with customers in need of reliable water delivery services.</p>
+
+                    <div class="benefits">
+                        <h3>Benefits of Becoming a Supplier:</h3>
+                        <ul>
+                            <li>Expand your customer base across your city</li>
+                            <li>User-friendly supplier dashboard for order management</li>
+                            <li>Navigation assistance for efficient deliveries</li>
+                            <li>Secure and timely payments directly to your account</li>
+                            <li>Business analytics to track growth and performance</li>
+                            <li>Dedicated supplier support for any assistance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="registration-form animate-fadeIn">
+                    <h2>Create Supplier Account</h2>
+                    <form id="supplierRegistration">
+                        <div class="form-group">
+                            <label for="businessName">Business Name</label>
+                            <input type="text" id="businessName" name="businessName" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ownerFirstName">Owner First Name</label>
+                                <input type="text" id="ownerFirstName" name="ownerFirstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ownerLastName">Owner Last Name</label>
+                                <input type="text" id="ownerLastName" name="ownerLastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Business Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Business Phone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Create Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessAddress">Business Address</label>
+                            <input type="text" id="businessAddress" name="businessAddress" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pincode">PIN Code</label>
+                                <input type="text" id="pincode" name="pincode" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gstNumber">GST Number</label>
+                            <input type="text" id="gstNumber" name="gstNumber" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="waterSupplyTypes">Types of Water Supply (Select all that apply)</label>
+                            <div class="checkbox-container">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="purified" name="waterTypes" value="purified">
+                                    <label for="purified">Purified Water</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="mineral" name="waterTypes" value="mineral">
+                                    <label for="mineral">Mineral Water</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="spring" name="waterTypes" value="spring">
+                                    <label for="spring">Spring Water</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="alkaline" name="waterTypes" value="alkaline">
+                                    <label for="alkaline">Alkaline Water</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="drinking" name="waterTypes" value="drinking">
+                                    <label for="drinking">Regular Drinking Water</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="supplyCapacity">Daily Supply Capacity (Liters)</label>
+                            <input type="number" id="supplyCapacity" name="supplyCapacity" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the Terms and Conditions and Privacy Policy</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Register as Supplier</button>
+                    </form>
+
+                    <div class="already-registered">
+                        <p>Already have an account? <a href="supplier-login.html">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">💧</span>
+                    <span>Giddu</span>
+                    <p>Water delivery made simple</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="refund.html">Refund Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Connect With Us</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Giddu Water Delivery Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
