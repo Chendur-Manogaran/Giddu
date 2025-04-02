@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giddu - Customer Registration</title>
     <link rel="stylesheet" href="customer-registration.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -56,6 +61,9 @@
 
                 <div class="registration-form animate-fadeIn">
                     <h2>Create Customer Account</h2>
+                    <!-- Status message area for success/error feedback -->
+                    <div id="statusMessage" class="status-message"></div>
+                    
                     <form id="customerRegistration">
                         <div class="form-row">
                             <div class="form-group">
@@ -110,63 +118,151 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Create Account</button>
-                        </form>
+                    </form>
+                    
+                    <div class="already-registered">
+                        <p>Already have an account? <a href="login.html">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">💧</span>
+                    <span>Giddu</span>
+                    <p>Water delivery made simple</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="refund.html">Refund Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
                         
-                        <div class="already-registered">
-                            <p>Already have an account? <a href="login.html">Login here</a></p>
-                        </div>
-                        </div>
-                        </div>
-                        </section>
-                        
-                        <!-- Footer -->
-                        <footer>
-                            <div class="container">
-                                <div class="footer-content">
-                                    <div class="footer-logo">
-                                        <span class="logo-icon">💧</span>
-                                        <span>Giddu</span>
-                                        <p>Water delivery made simple</p>
-                                    </div>
-                                    
-                                    <div class="footer-links">
-                                        <div class="footer-column">
-                                            <h4>Company</h4>
-                                            <ul>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="careers.html">Careers</a></li>
-                                                <li><a href="contact.html">Contact Us</a></li>
-                                                <li><a href="blog.html">Blog</a></li>
-                                            </ul>
-                                        </div>
-                                        
-                                        <div class="footer-column">
-                                            <h4>Legal</h4>
-                                            <ul>
-                                                <li><a href="terms.html">Terms of Service</a></li>
-                                                <li><a href="privacy.html">Privacy Policy</a></li>
-                                                <li><a href="refund.html">Refund Policy</a></li>
-                                            </ul>
-                                        </div>
-                                        
-                                        <div class="footer-column">
-                                            <h4>Connect With Us</h4>
-                                            <div class="social-links">
-                                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="copyright">
-                                    <p>&copy; 2025 Giddu Water Delivery Services. All rights reserved.</p>
-                                </div>
-                            </div>
-                        </footer>
-                        
-                        <script src="script.js"></script>
-                        </body>
-                        </html>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Giddu Water Delivery Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase Initialization and Authentication Script -->
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEQt9PMkuu4sKUUAN4RNXz-7oEQuxx96I",
+            authDomain: "giddu-web.firebaseapp.com",
+            projectId: "giddu-web",
+            storageBucket: "giddu-web.firebasestorage.app",
+            messagingSenderId: "288464005510",
+            appId: "1:288464005510:web:da3f33df01932c3f95e407",
+            measurementId: "G-7X8B94FNEY"
+        };
+    
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    
+        // Get references to Firebase services
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    
+        // Form submission handler
+        document.getElementById('customerRegistration').addEventListener('submit', function(e) {
+            e.preventDefault();
+    
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const pincode = document.getElementById('pincode').value;
+            const terms = document.getElementById('terms').checked;
+    
+            // Status message element
+            const statusMessage = document.getElementById('statusMessage');
+    
+            // Form validation
+            if (password !== confirmPassword) {
+                statusMessage.textContent = "Passwords do not match!";
+                statusMessage.className = "status-message error";
+                return;
+            }
+    
+            if (!terms) {
+                statusMessage.textContent = "Please agree to the Terms and Conditions.";
+                statusMessage.className = "status-message error";
+                return;
+            }
+    
+            // Show loading message
+            statusMessage.textContent = "Creating your account...";
+            statusMessage.className = "status-message loading";
+    
+            // Create user with email and password
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // User successfully created
+                    const user = userCredential.user;
+    
+                    // Save additional user information in Firestore
+                    return db.collection('users').doc(user.uid).set({
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        city: city,
+                        pincode: pincode,
+                        userType: 'customer',
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                })
+                .then(() => {
+                    // Show success message
+                    statusMessage.textContent = "Account created successfully! Redirecting...";
+                    statusMessage.className = "status-message success";
+    
+                    // Redirect to login or dashboard after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = "order.html";
+                    }, 2000);
+                })
+                .catch((error) => {
+                    // Handle errors
+                    console.error("Error creating account:", error);
+                    statusMessage.textContent = error.message;
+                    statusMessage.className = "status-message error";
+                });
+        });
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
